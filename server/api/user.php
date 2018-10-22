@@ -40,7 +40,7 @@ function delete($id, $conn){
     }
 }
 
-function put($data, $conn){
+function patch($data, $conn){
     try{
         foreach (array_keys($data) as $key => $value) {
             $data[$key] = addslashes($data[$key]);
