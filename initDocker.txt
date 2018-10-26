@@ -1,0 +1,2 @@
+docker build -t mammycare ./
+docker run -d -p 3000:80 --name mammycare mammycare
