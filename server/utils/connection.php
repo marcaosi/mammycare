@@ -1,8 +1,8 @@
 <?php
-    $server = "localhost";
+    $server = "localhost:33060";
     $db = "mammycare";
     $user = "root";
-    $pwd = "";
+    $pwd = "mammycare";
 
 function getConnection(){
     $conn = mysqli_connect($server, $user, $pwd, $db);
