@@ -18,7 +18,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" id="form-login">
 					<span class="login100-form-title">
 						Entrar
 					</span>
@@ -50,8 +50,49 @@
 							Não tem uma conta?
 						</span>
 
-						<a href="#" class="txt3">
+						<a href="#" onclick="showCreateForm(event)" class="txt3">
 							Regisrar agora
+						</a>
+					</div>
+				</form>
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" id="form-sign-up">
+					<span class="login100-form-title">
+						Registrar
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Por favor informe o seu nome">
+						<input class="input100" type="text" name="name" placeholder="Nome">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Por favor informe o seu e-mail">
+						<input class="input100" type="text" name="email" placeholder="E-mail">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Por favor informe a sua profissão">
+						<input class="input100" type="text" name="profession" placeholder="Profissão">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Por favor digite a senha">
+						<input class="input100" type="password" name="pass" placeholder="Senha">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Entrar
+						</button>
+					</div>
+
+					<div class="flex-col-c p-t-40 p-b-40">
+						<span class="txt1 p-b-9">
+							Já tem uma conta?
+						</span>
+
+						<a href="#" onclick="showLoginForm(event)" class="txt3">
+							Entrar
 						</a>
 					</div>
 				</form>

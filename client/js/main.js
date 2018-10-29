@@ -19,6 +19,8 @@
         return check;
     });
 
+    $("#form-sign-up").hide();
+
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
@@ -54,3 +56,15 @@
     
 
 })(jQuery);
+
+function showCreateForm(event){
+    event.preventDefault()
+    $("#form-login").hide()
+    $("#form-sign-up").fadeIn()
+}
+
+function showLoginForm(event){
+    event.preventDefault()
+    $("#form-sign-up").hide()
+    $("#form-login").fadeIn()
+}
