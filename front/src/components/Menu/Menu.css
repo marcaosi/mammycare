@@ -1,0 +1,15 @@
+.nav-link{
+    font-size: 1.25em;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.nav-link::after{
+    content: '|';
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.nav-item:last-child .nav-link::after{
+    content: "";
+}
