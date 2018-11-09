@@ -74,8 +74,8 @@ class FormSignUp extends Component{
         let check = true
 
         Object.keys(this.state).forEach(key => {
-            if(key != 'validate'){
-                if(this.validateField(key) == false){
+            if(key !== 'validate'){
+                if(this.validateField(key) === false){
                     this.showValidate(key)
                     check = false
                 }
@@ -96,12 +96,12 @@ class FormSignUp extends Component{
     }
 
     validateField(field){
-        if(field == 'email'){
-            if(this.state[field].match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+        if(field === 'email'){
+            if(this.state[field].match(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) === null) {
                 return false;
             }
         }else{
-            if(this.state[field] == ''){
+            if(this.state[field] === ''){
                 return false;
             }
         }
@@ -187,7 +187,7 @@ class FormLogin extends Component{
                 </div>
 
                 <div className="text-right p-t-13 p-b-23">
-                    <a href="#" className="txt2">
+                    <a href="/login" className="txt2">
                         Esqueci a senha
                     </a>
                 </div>
@@ -203,7 +203,7 @@ class FormLogin extends Component{
                         Não tem uma conta?
                     </span>
 
-                    <a href="" onClick={this.changeForm.bind(this)} className="txt3">
+                    <a href="/login" onClick={this.changeForm.bind(this)} className="txt3">
                         Regisrar agora
                     </a>
                 </div>
