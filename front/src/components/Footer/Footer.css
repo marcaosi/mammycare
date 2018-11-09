@@ -1,4 +1,8 @@
 footer{
+    color: white !important;
+}
+
+.credits p{
     color: white;
 }
 

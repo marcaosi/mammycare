@@ -20,3 +20,72 @@ code {
 .bg-dark-pink{
   background-color: #eb268f;
 }
+
+.title-page{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: #eb268f;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.title-page > hr{
+  background-color: #eb268f;
+  height: 2px;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+}
+
+main{
+  margin-top:20px;
+  margin-bottom:20px;
+}
+
+.card{
+  margin: 0 5%;
+  background-color: rgba(242, 173, 217, .5);
+  border: none;
+  padding: 10px;
+  text-align: center;
+}
+
+.card i {
+  color: #eb268f;
+  font-size: 3em;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.card p a{
+  color: #eb268f;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.card p{
+  color: #eb268f;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card:hover{
+  background-color: #eb268f;
+  cursor: pointer;
+  transition: 1.5s;
+}
+
+.card:hover i{
+  color: #f2add9;
+}
+
+.card:hover p, .card:hover p a{
+  color: #f2add9;
+}
+
+.container-cards{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
