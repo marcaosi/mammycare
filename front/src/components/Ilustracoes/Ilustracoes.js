@@ -35,72 +35,72 @@ class Ilustracoes extends Component{
 
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/tipos_mamilos">Tipos de mamilos</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/higienizacao_mamas">Higienização das mamas</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/tipos_mamilos" className="col card">
+                                    <p>Tipos de mamilos</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/higienizacao_mamas" className="col card">
+                                    <p>Higienização das mamas</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/posicoes_amamentar">Posições de amamentar</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/pega_correta">Pega correta e incorreta</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/posicoes_amamentar" className="col card">
+                                    <p>Posições de amamentar</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/pega_correta" className="col card">
+                                    <p>Pega correta e incorreta</p>
+                                </Link>
                             </div>
                             
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/formas_segurar_mamas">Formas adequadas e inadequadas para segurar as mamas</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/terminar_mamada">Como terminar uma mamada</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/formas_segurar_mamas" className="col card">
+                                    <p>Formas adequadas e inadequadas para segurar as mamas</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/terminar_mamada" className="col card">
+                                    <p>Como terminar uma mamada</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/extracao_manual">Extração manual do leite materno</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/formar_armazenamento">Formas corretas de armazenar o leite materno</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/extracao_manual" className="col card">
+                                    <p>Extração manual do leite materno</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/formar_armazenamento" className="col card">
+                                    <p>Formas corretas de armazenar o leite materno</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/caixas_termicas">Caixas térmicas para doação e/ou solicitação de leite materno</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/artificios_nao_recomendados">Artifícios não recomendados</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/caixas_termicas" className="col card">
+                                    <p>Caixas térmicas para doação e/ou solicitação de leite materno</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/artificios_nao_recomendados" className="col card">
+                                    <p>Artifícios não recomendados</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/equipamentos_amamentacao">Equipamentos e tecnologias de amamentação</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/desenhos_diversos">Desenhos diversos</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/equipamentos_amamentacao" className="col card">
+                                    <p>Equipamentos e tecnologias de amamentação</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/desenhos_diversos" className="col card">
+                                    <p>Desenhos diversos</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/oferta_copinhos">Oferta de leite materno em copinhos</Link></p>
-                                </div>
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/estimulo_manual">Estímulo manual e com bomba ordenharia em mamilo invertido</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/oferta_copinhos" className="col card">
+                                    <p>Oferta de leite materno em copinhos</p>
+                                </Link>
+                                <Link to="/informacoes/ilustracoes/estimulo_manual" className="col card">
+                                    <p>Estímulo manual e com bomba ordenharia em mamilo invertido</p>
+                                </Link>
                             </div>
 
                             <div className="row container-cards">
-                                <div className="col card">
-                                    <p><Link to="/informacoes/ilustracoes/mamas">Mamas</Link></p>
-                                </div>
+                                <Link to="/informacoes/ilustracoes/mamas" className="col card">
+                                    <p>Mamas</p>
+                                </Link>
                             </div>
                         </div>
                     </div>

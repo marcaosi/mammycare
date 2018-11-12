@@ -21,12 +21,12 @@ code {
   background-color: #eb268f;
 }
 
-.title-page{
+.title-page a{
   padding-top: 25px;
   padding-bottom: 25px;
   color: #eb268f;
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 0.8em;
 }
 
 .title-page > hr{
