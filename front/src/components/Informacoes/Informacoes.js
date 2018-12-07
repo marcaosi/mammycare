@@ -14,7 +14,7 @@ class Informacoes extends Component{
                                 <i className="fas fa-image"></i>
                                 <p>Ilustrações</p>
                             </Link>
-                            <Link to="" className="col card">
+                            <Link to="/informacoes/tipos_lesoes" className="col card">
                                 <i className="fas fa-exclamation"></i>
                                 <p>Tipos de Lesões</p>
                             </Link>

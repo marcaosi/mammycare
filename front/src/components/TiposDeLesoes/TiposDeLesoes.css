@@ -1,3 +1,20 @@
 h3, img{
     margin: 20px auto;
 }
+
+h4{
+    margin: 40px 0;
+}
+
+.condutasList{
+    margin-left: 20px;
+}
+
+.condutasList > li{
+    margin: 10px 0;
+    list-style-type: disc;
+}
+
+.condutasList > li:nth-child(even){
+    color: #999;
+}
