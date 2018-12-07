@@ -9,6 +9,7 @@ import Login from './components/Login/Login'
 import Ilustracoes from './components/Ilustracoes/Ilustracoes';
 import Informacoes from './components/Informacoes/Informacoes';
 import TiposDeLesoes from './components/TiposDeLesoes/TiposDeLesoes';
+import Prevencao from './components/Prevencao/Prevencao';
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -20,6 +21,7 @@ ReactDOM.render((
                 <Route path="tipos_lesoes" component={TiposDeLesoes}/>
                 <Route path="tipos_lesoes/:id" component={TiposDeLesoes}/>
             </Route>
+            <Route path="prevencao" component={Prevencao}/>
         </Route>
         <Route path="/login" component={Login} />
     </Router>
