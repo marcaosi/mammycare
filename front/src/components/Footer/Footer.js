@@ -5,7 +5,7 @@ class Footer extends Component{
     render(){
         return (
             <footer className="container-fluid">
-                <div className="row bg-dark-pink justify-content-md-center">
+                <div className="row bg-light-pink justify-content-md-center">
                     <div className="col-xs-12 col-8 credits">
                         <h5>Conteúdo desenvolvido no Mestrado Profissional em Ciências aplicas à Saúde - Univás</h5>
                         <p>
@@ -19,7 +19,7 @@ class Footer extends Component{
                         </p>
                     </div>
                 </div>
-                <div className="row bg-light-pink">
+                <div className="row bg-light-blue">
                     <div className="col text-center copyright">
                         &copy; Copyright. Todos os direitor reservados. 2018.
                     </div>

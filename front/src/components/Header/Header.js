@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../../logo.jpg'
+import logo from '../../logo.png'
 import './Header.css'
 import Menu from '../Menu/Menu';
 
@@ -8,9 +8,8 @@ class Header extends Component{
         return (
             <header className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-2 content-logo">
+                    <div className="col-4 content-logo">
                         <img className="img-logo-header" src={logo} alt="MammyCare"/>
-                        <h1 className="title">MammyCare</h1>
                     </div>
                 </div>
 

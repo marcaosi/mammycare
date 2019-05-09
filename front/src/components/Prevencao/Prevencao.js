@@ -184,8 +184,8 @@ export default class Prevencao extends Component{
     cuidadosGerais(){
         return (
             <div className="conteudo">
-                <h3>Cuidados com as MAMAS período gravídico-puerperal:</h3>
-                <h4>Cabe aos profissionais de saúde envolvidos no universo materno-infantil, ORIENTAR:</h4>
+                <h5>Cuidados com as MAMAS período gravídico-puerperal:</h5>
+                <p>Cabe aos profissionais de saúde envolvidos no universo materno-infantil, ORIENTAR:</p>
 
                 <ul className="listBullet">
                     <li>Técnicas de amamentação: Pega/sucção e posicionamento adequado da dupla mãe-bebê;  </li>

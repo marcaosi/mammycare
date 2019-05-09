@@ -1,0 +1,16 @@
+img{
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.btn-mammycare{
+    background-color: #77cdf4;
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-mammycare:hover{
+    filter: brightness(.9);
+}

@@ -1,13 +1,20 @@
 .nav-link{
-    font-size: 1.25em;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    font-size: 1.3em;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    font-weight: bold;
+    color: #fff !important;
 }
 
-.nav-link::after{
-    content: '|';
-    padding-left: 25px;
-    padding-right: 25px;
+.nav-link:hover{
+    background-color: #77cdf4;
+    transition: 2s;
+}
+
+.navbar{
+    padding: 0;
 }
 
 .nav-item:last-child .nav-link::after{

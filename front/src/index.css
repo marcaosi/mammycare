@@ -1,17 +1,15 @@
+*{
+  font-family: 'Ubuntu', sans-serif !important;
+
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 .bg-light-pink{
   background-color: #f2add9;
@@ -19,6 +17,10 @@ code {
 
 .bg-dark-pink{
   background-color: #eb268f;
+}
+
+.bg-light-blue{
+  background-color: #77cdf4;
 }
 
 .title-page a{
@@ -44,7 +46,7 @@ main{
 
 .card{
   margin: 0 5%;
-  background-color: rgba(242, 173, 217, .5);
+  background-color: rgba(242, 173, 217, .2);
   border: none;
   padding: 10px;
   text-align: center;
@@ -72,17 +74,17 @@ main{
 }
 
 .card:hover{
-  background-color: #eb268f;
+  background-color: rgba(235, 38, 143, 1);
   cursor: pointer;
   transition: 1.5s;
 }
 
 .card:hover i{
-  color: #f2add9;
+  color: #fff;
 }
 
 .card:hover p, .card:hover p a{
-  color: #f2add9;
+  color: #fff;
 }
 
 .container-cards{
