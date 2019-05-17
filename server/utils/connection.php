@@ -19,7 +19,7 @@ function closeConnection($conn){
 }
 
 function query($sql, $conn){
-    if(strpos(strtoupper($sql), "SELECT")){
+    if(strpos(strtoupper($sql), "SELECT") !== FALSE){
         throw new Exception("Impossível executar query 'SELECT'. Use query_string()");
     }
 
@@ -33,7 +33,7 @@ function query($sql, $conn){
 }
 
 function query_string($sql, $conn){
-    if(!strpos(strtoupper($sql), "SELECT")){
+    if(strpos(strtoupper($sql), "SELECT") === FALSE){
         throw new Exception("Impossível executar query diferente de 'SELECT'. Use query()");
     }
 

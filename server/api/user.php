@@ -83,7 +83,7 @@ function put($data, $conn){
             }
         }
 
-        $sql .= "1=1 WHERE id = {$data['id']};";
+        $sql .= "1=1 WHERE id = {$data['id']} limit 1;";
 
         query($sql, $conn);
         res(200, "Registro atualizado com sucesso.");
@@ -98,6 +98,7 @@ function put($data, $conn){
 
 function post($data, $conn){
     try{
+        $data = json_decode($data, true);
         validate($data);
 
         foreach (array_keys($data) as $key => $value) {
