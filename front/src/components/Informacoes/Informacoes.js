@@ -11,11 +11,11 @@ class Informacoes extends Component{
 
                         <div className="row container-cards">
                             <Link to="/informacoes/ilustracoes" className="col card">
-                                <i className="fas fa-image"></i>
+                                
                                 <p>Ilustrações</p>
                             </Link>
                             <Link to="/informacoes/tipos_lesoes" className="col card">
-                                <i className="fas fa-exclamation"></i>
+                                
                                 <p>Tipos de Lesões</p>
                             </Link>
                         </div>
