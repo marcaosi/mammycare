@@ -7,32 +7,35 @@ export default class Prevencao extends Component{
     constructor(){
         super()
         this.state = {
-            prevencao: ''
+            prevencao: '',
+            menu: true
         }
+
+        this.clickPrevencao = this.clickPrevencao.bind(this)
     }
 
     setCuidadosGerais(){
-        this.setState({prevencao:'cuidadosGerais'})
+        this.setState({menu: false, prevencao:'cuidadosGerais'})
     }
 
     setTecnicas(){
-        this.setState({prevencao:'tecnicas'})
+        this.setState({menu: false, prevencao:'tecnicas'})
     }
 
     setOrientacoes(){
-        this.setState({prevencao:'orientacoes'})
+        this.setState({menu: false, prevencao:'orientacoes'})
     }
 
     setRetiradaLeite(){
-        this.setState({prevencao:'retiradaLeite'})
+        this.setState({menu: false, prevencao:'retiradaLeite'})
     }
 
     setAcessorios(){
-        this.setState({prevencao:'acessorios'})
+        this.setState({menu: false, prevencao:'acessorios'})
     }
 
     setAspectos(){
-        this.setState({prevencao:'aspectos'})
+        this.setState({menu: false, prevencao:'aspectos'})
     }
 
     setContent(){
@@ -41,39 +44,20 @@ export default class Prevencao extends Component{
         }
     }
 
+    clickPrevencao(event){
+        event.preventDefault()
+        this.setState({menu:true, prevencao:''})
+    }
+
     render(){
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
                     <div className="col-8">
-                        <h2 className="title-page"><Link to="/prevencao">Prevenção</Link><hr/></h2>
-
-                        <div className="row container-cards">
-                            <div onClick={this.setCuidadosGerais.bind(this)} className="col card">
-                                <p>Cuidados Gerais com as Mamas e Mamilos</p>
-                            </div>
-                            <div onClick={this.setTecnicas.bind(this)} className="col card">
-                                <p>Técnicas de Amamentação</p>
-                            </div>
-                        </div>
-
-                        <div className="row container-cards">
-                            <div onClick={this.setOrientacoes.bind(this)} className="col card">
-                                <p>Orientações para o processo de amamentação</p>
-                            </div>
-                            <div onClick={this.setRetiradaLeite.bind(this)} className="col card">
-                                <p>Retirada do leite das mamas</p>
-                            </div>
-                        </div>
-                        
-                        <div className="row container-cards">
-                            <div onClick={this.setAcessorios.bind(this)} className="col card">
-                                <p>Bicos e outros acessórios</p>
-                            </div>
-                            <div onClick={this.setAspectos.bind(this)} className="col card">
-                                <p>Aspectos subjetivos</p>
-                            </div>
-                        </div>
+                        <h2 className="title-page"><Link to="/prevencao" onClick={this.clickPrevencao}>Prevenção</Link><hr/></h2>
+                        {
+                            this.state.menu ? this.showMenu() : ''
+                        }
 
                         {
                             this.setContent()
@@ -84,10 +68,41 @@ export default class Prevencao extends Component{
         )
     }
 
+    showMenu(){
+        return (<div>
+            <div className="row container-cards">
+                <div onClick={this.setCuidadosGerais.bind(this)} className="col card">
+                    <p>Cuidados Gerais com as Mamas e Mamilos</p>
+                </div>
+                <div onClick={this.setTecnicas.bind(this)} className="col card">
+                    <p>Técnicas de Amamentação</p>
+                </div>
+            </div>
+
+            <div className="row container-cards">
+                <div onClick={this.setOrientacoes.bind(this)} className="col card">
+                    <p>Orientações para o processo de amamentação</p>
+                </div>
+                <div onClick={this.setRetiradaLeite.bind(this)} className="col card">
+                    <p>Retirada do leite das mamas</p>
+                </div>
+            </div>
+            
+            <div className="row container-cards">
+                <div onClick={this.setAcessorios.bind(this)} className="col card">
+                    <p>Bicos e outros acessórios</p>
+                </div>
+                <div onClick={this.setAspectos.bind(this)} className="col card">
+                    <p>Aspectos subjetivos</p>
+                </div>
+            </div>
+        </div>)
+    }
+
     aspectos(){
         return (
             <div className="conteudo">
-                <h3>São bases para o sucesso da amamentação:</h3>
+                <p>São bases para o sucesso da amamentação:</p>
                 <ul className="listBullet">
                     <li>Observar sinais relacionados ao vínculo mãe-bebê;  </li>
                     <li>Atentar para os primeiros sinais de depressão materna e encaminhamento para profissional especializado; oferecer apoio profissional, bem como estimular o apoio da família, amigos e comunidade;  </li>
@@ -101,6 +116,7 @@ export default class Prevencao extends Component{
     acessorios(){
         return (
             <div className="conteudo">
+                <p>Bicos e outros acessórios</p>
                 <ul className="listBullet">
                     <li>Orientar para NÃO utilização de bicos (chupetas, mamadeiras, chucas), que podem ser causas de pega incorreta e alterações no padrão de sucção, podendo levar à ocorrência dos traumas mamários;  </li>
                     <li>Avaliar cada caso em relação à utilização de Conchas, absorventes de seios, bicos de silicone (avaliar a real necessidade desses itens). As conchas e os absorventes de seios, quando mantidos úmidos, podem levar a infecções, tais como a cândida, por exemplo, que se desenvolve em meio úmido e quente, o que, por sua vez, pode acarretar o desmame em decorrência da dor ou desconforto da lesão mamilar.  </li>
@@ -113,7 +129,8 @@ export default class Prevencao extends Component{
     retiradaLeite(){
         return (
             <div className="conteudo">
-                <h3>EXTRAÇÃO DO LEITE MATERNO</h3>
+                <h4>Retirada do Leite</h4>
+                <p>EXTRAÇÃO DO LEITE MATERNO</p>
                 <ul className="listBullet">
                     <li>Orientar a mãe para extrair, QUANDO:  </li>
                     <li>Leite em excesso (equilíbrio da produção do LM e demanda do recém-nascido);  </li>
@@ -122,8 +139,8 @@ export default class Prevencao extends Component{
                     <li>Bebê apresenta dificuldade de sugar;  </li>
                     <li>A mãe deseja doar o excedente de seu leite aos Bancos de Leite (BLH) para ser pasteurizado (LHOP);  </li>
                     <li>Orientar a mãe sobre como guardar o leite humano ordenhado cru (LHOC): Caso não tenha refrigerador: o leite pode ser coletado em vasilha limpa, fervida durante 15 minutos e colocado em local fresco. Esse leite só deve ser usado até seis horas após a coleta. Se tiver refrigerador: o leite pode ser refrigerado com segurança por até 24 horas ou congelado por até 30 dias. Antes de alimentar o bebê com o leite armazenado, deve-se aquecê-lo em banho-maria e oferecer com colher ou copinho exclusivo para o bebê, sempre desprezando o que sobrou. </li>
-                </ul>
-                <h3>COMO FAZER A EXTRAÇÃO - ORDENHAR:</h3>
+                </ul><br/>
+                <p>COMO FAZER A EXTRAÇÃO - ORDENHAR:</p>
                 <ul className="listBullet">
                     <li>Prender e usar tocas nos cabelos; proteger a boca e o nariz com pano ou fralda;  </li>
                     <li>Lavar as mãos e antebraço e secá-los com toalha limpa ou papel;  </li>
@@ -139,6 +156,7 @@ export default class Prevencao extends Component{
     orientacoes(){
         return (
             <div className="conteudo">
+                <p>Orientações para o processo de amamentação</p>
                 <ul className="listBullet">
                     <li>Amamentação Livre demanda: Iniciar a amamentação na primeira hora após o nascimento, estimulando a permanência em alojamento conjunto. Um bebê em aleitamento exclusivo costuma mamar de 8 a 12 vezes por dia, e nos primeiros meses é natural que mame com muita assiduidade e sem horários e períodos regulares. O importante é que a criança esgote a mama, de modo a receber tanto o leite do começo quanto o do fim da mamada, por ser mais calórico, promover maior saciedade e ganho de peso adequado. A próxima mamada deve, sucessivamente, começar pela última mama oferecida.  </li>
                     <li>Adoção de técnicas corretas de amamentação; evitar o uso de complementos (água, chás e substitutos do leite humano).  </li>
@@ -154,7 +172,8 @@ export default class Prevencao extends Component{
     tecnicas(){
         return (
             <div className="conteudo">
-                <h3>Posicionamento da dupla mãe-bebê:</h3>
+                <h5>Técnicas de amamentação</h5><br/>
+                <p>Posicionamento da dupla mãe-bebê:</p><br/>
 
                 <ul className="listBullet">
                     <li>Posição deitada: Nesta posição a mãe se coloca de costas e fica apoiada por travesseiros. É adotada geralmente por mães no pós-operatório imediato - POT- ou em outra situação. Pode ficar deitada de lado: Com cabeça e costas apoiadas em travesseiros, o bebê fica de frente e voltado para mãe e sua cabeça apoiada no braço da mãe, em travesseiros ou mesmo na cama elevada. Esta posição ajuda as mães com mamas grandes ou pequenas, pois ao encostar-se na cama, fica mais fácil para o bebê abocanhar a mama. Também pode ser utilizada quando a mãe estiver cansada. Observar se o bebê está com a cabeça ligeiramente elevada, evitando possíveis infecções da orelha média da criança;  </li>
@@ -163,9 +182,9 @@ export default class Prevencao extends Component{
                     <li>Posição sentada com o bebê na posição de cavaleiro: Esta posição pode ser usada para bebês com refluxo gastresofágico, crianças com fissura labial e/ou palatina. A mãe deve ficar relaxada, sentada ou levemente inclinada para frente. O bebê, sentado no colo, com as perninhas abertas uma de cada lado na coxa da mãe. Com uma mão a mãe sustenta a cabeça, pescoço e tronco do bebê e, com a outra, apoia a mama com a palma de sua mão e com os dedos médio, anular e mínimo, pressionando-a e comprimindo-a para dentro da boca do bebê. O queixo do bebê poderá ser apoiado com o indicador e o polegar, formando um arco na posição de “mão bailarina”. Ao mesmo tempo, a mãe tampona a fenda labial e a gengiva com a porção digital do polegar, deixando as narinas livres para que o bebê possa respirar. Dessa maneira, ele consegue formar o vácuo necessário para amamentar, mas se esse processo o cansar, fazendo com que ele não extraia o leite posterior, a mãe deve realizar a ordenha e ofertar com o auxílio de colher ou copinho  </li>
                     <li>Posição Descontraída (laid-back position): Posição semideitada, levemente reclinada, relaxada, com ombros, cabeça e pescoço bem apoiados. O bebê fica em cima da mãe, na posição longitudinal ou oblíqua.  </li>
                     <li>Obs.: Em todas as posições - Mãe sempre segura o seio em “C” e/ou mão de bailarina - NÃO na forma de “tesoura”.  </li>
-                </ul>
+                </ul><br/>
 
-                <h3>Pega e sucção do bebê:</h3>
+                <p>Pega e sucção do bebê:</p><br/>
 
                 <ul className="listBullet">
                     <li>A produção apropriada de leite vai depender predominantemente da sucção do bebê (que estimula a produção de prolactina). No entanto, para a ejeção do leite (necessita da fabricação de ocitocina), sendo esta, naturalmente influenciada pela condição emocional da mãe (autoconfiança)  </li>
@@ -184,7 +203,7 @@ export default class Prevencao extends Component{
     cuidadosGerais(){
         return (
             <div className="conteudo">
-                <h5>Cuidados com as MAMAS período gravídico-puerperal:</h5>
+                <h6>Cuidados com as MAMAS período gravídico-puerperal:</h6><br/>
                 <p>Cabe aos profissionais de saúde envolvidos no universo materno-infantil, ORIENTAR:</p>
 
                 <ul className="listBullet">
