@@ -12,6 +12,7 @@ import TiposDeLesoes from './components/TiposDeLesoes/TiposDeLesoes';
 import Prevencao from './components/Prevencao/Prevencao';
 import Procedimentos from './components/Procedimentos/procedimentos';
 import NovoProcedimento from './components/Procedimentos/NovoProcedimento';
+import EditarProcedimento from './components/Procedimentos/EditarProcedimento';
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -26,6 +27,7 @@ ReactDOM.render((
             <Route path="/procedimentos">
                 <IndexRoute component={Procedimentos}/>
                 <Route path="novo" component={NovoProcedimento}/>
+                <Route path=":id" component={EditarProcedimento}/>
             </Route>
             <Route path="prevencao" component={Prevencao}/>
         </Route>

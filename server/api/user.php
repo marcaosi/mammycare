@@ -104,11 +104,12 @@ function post($data, $conn){
         foreach (array_keys($data) as $key => $value) {
             $data[$key] = addslashes($data[$key]);
         }
+        $pass = md5($data['password']);
 
-        $sql = "INSERT INTO user(name, email, password, profession) VALUES('{$data['name']}', '{$data['email']}', '{$data['password']}', '{$data['profession']}');";
+        $sql = "INSERT INTO user(name, email, password, profession) VALUES('{$data['name']}', '{$data['email']}', '{$pass}', '{$data['profession']}');";
 
         query($sql, $conn);
-
+        $data['password'] = $pass;
         res(200, json_encode($data));
     }catch(Exception $ex){
         $code = 500;

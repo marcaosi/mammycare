@@ -1,26 +1,16 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
+use \Firebase\JWT\JWT;
 
-$fields = array('user_fk', 'nommae', 'nombebe', 'dtnascbebe', 'condnasc', 'idgest', 'idmae', 'fumo', 'alcool', 'cafe', 'medicamentos', 'drogas', 'prenatal', 'parto', 'primMamada', 'leiteVaca', 'leitePo', 'agua', 'cha', 'soro', 'alojamentoConjunto', 'expAmamentacao', 'lesaoAnterior', 'apoioPosParto', 'pretendeAmamentar', 'cansadaDeprimida', 'solucaoContinuidade', 'localizacao', 'descricao', 'secrecao', 'tecido', 'dor', 'candidiase', 'reynaud');
+$key = "Mammycare";
 
-$data = array(
-    "user_fk" => 2,
-    "nommae" => "Maria",
-    "reynaud" => "Sim"
+$token = array(
+    "iss" => 'http://mammycare.net.br',
+    'aud' => 'http://mammycare.net.br',
+    'iat' => 9993920289,
+    'nbf' => 9872018369
 );
 
+$jwt = JWT::encode($token, $key);
 
-$array_fields = array('user_fk', 'nommae', 'nombebe', 'dtnascbebe', 'condnasc', 'idgest', 'idmae', 'fumo', 'alcool', 'cafe', 'medicamentos', 'drogas', 'prenatal', 'parto', 'primMamada', 'leiteVaca', 'leitePo', 'agua', 'cha', 'soro', 'alojamentoConjunto', 'expAmamentacao', 'lesaoAnterior', 'apoioPosParto', 'pretendeAmamentar', 'cansadaDeprimida', 'solucaoContinuidade', 'localizacao', 'descricao', 'secrecao', 'tecido', 'dor', 'candidiase', 'reynaud');
-
-$array_data = array();
-
-foreach ($array_fields as $key) {
-    if(isset($data[$key]) && !empty($data[$key])){
-        $value = $data[$key];
-        array_push($array_data, "'{$key}' = '{$value}'");
-    }
-}
-
-$values = implode(",", $array_data);
-
-print_r($values);
-exit();
+print_r($jwt);
