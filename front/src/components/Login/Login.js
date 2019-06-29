@@ -67,7 +67,29 @@ class FormSignUp extends Component{
     submitForm(event){
         event.preventDefault()
 
-        this.validateForm()
+        if(this.validateForm()){
+            const dados = {
+                name: this.state.name,
+                email: this.state.email,
+                profession: this.state.profession,
+                password: this.state.password
+            }
+
+            console.log(JSON.stringify(dados))
+
+            fetch('http://mammycare.progm.net.br/api/user.php', {
+                method: 'post',
+                body: JSON.stringify(dados)
+            }).then(res => {
+                if(res.ok){
+                    return res.json()
+                }else{
+                    alert('erro')
+                }
+            }).then(data => {
+                alert('cadastro com sucesso.')
+            })
+        }
     }
 
     validateForm(){
