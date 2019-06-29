@@ -13,7 +13,7 @@ class NovoProcedimento extends Component{
         this.state = {
             step: 0,
             dados: {
-                user_fk: user.id,
+                user_fk: user?user.id:0,
                 nommae:'',
                 nombebe: '',
                 dtnascbebe: '',
