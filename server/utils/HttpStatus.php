@@ -6,4 +6,5 @@ abstract class HttpStatus{
     public static $NOT_FOUND = 404;
     public static $NO_CONTENT = 203;
     public static $CREATED = 202;
+    public static $FORBIDDEN = 403;
 }

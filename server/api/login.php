@@ -1,70 +1,68 @@
 <?php
-require_once("../utils/connection.php");
-require __DIR__ . '/../vendor/autoload.php';
-use \Firebase\JWT\JWT;
-
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: POST, GET");
 
-$input = file_get_contents("php://input");
+require_once(dirname(__FILE__)."/../utils/Database.php");
+require_once(dirname(__FILE__)."/../utils/HttpStatus.php");
+require_once(dirname(__FILE__)."/../utils/Response.php");
+require_once(dirname(__FILE__)."/../utils/JWT.php");
+require_once(dirname(__FILE__)."/../Validations/User.php");
 
-$connection = getConnection();
-switch($_SERVER["REQUEST_METHOD"]){
-    case 'POST':
-        post(json_decode($input, true), $connection);
-    break;
-    default:
-        res(403, "Método não suportado.");
-    break;
+try{
+    $db = new Database();
+
+    $input = file_get_contents("php://input");
+    $input = json_decode($input, true);
+    switch($_SERVER["REQUEST_METHOD"]){
+        case 'POST':
+            post($input, $db);
+        break;
+        case 'GET':
+            get($_GET, $db);
+        break;
+    }
+}catch(Exception $e){
+    $res = new Response($e->getMessage(), $e->getCode());
+    $res->res();
 }
-closeConnection($connection);
 
-function post($data, $conn){
-    try{
-        $key = "Mammycare";
+function get($input, $db){
+    $user = JWT::decodeToken($_GET['jwt']);
 
-        if(!isset($data['email']) || empty($data['email']))
-            throw new Exception("Campo e-mail obrigatório.", 400);
-        if(!isset($data['password']) || empty($data['password']))
-            throw new Exception("Campo senha obrigatório.", 400);
+    $sql = "SELECT * FROM user WHERE email = '{$user["email"]}' AND password = '{$user["password"]}';";
 
-        $email = addslashes($data['email']);
-        $password = md5($data['password']);
+    $mysqli_result = $db->query($sql);
 
-        $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$password';";
-
-        $result = query_string($sql, $conn);
-
-        if(sizeof($result) != 1)
-            throw new Exception("Usuário e senha inválidos", 401);
-
-        $user = $result[0];
-
-        $token = array(
-            "iss" => 'http://mammycare.net.br',
-            'email' => $user['email'],
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'profession' => $user['profession']
-        );
-        
-        $jwt = JWT::encode($token, $key);
-
-        $answer = array(
-            "jwt" => $jwt
-        );
-
-        res(200, json_encode($answer, true));
-    }catch(Exception $ex){
-        $code = 500;
-        if($ex->getCode()){
-            $code = $ex->getCode();
-        }
-        res($code, $ex->getMessage());
+    if($mysqli_result->num_rows !== 1) throw new Exception("Token inválido.", HttpStatus::$FORBIDDEN);
+    else{
+        $res = new Response(array(
+            "token" => $input['jwt'],
+            "auth" => true,
+            "redirect" => "/"
+        ), 200);
+        $res->res();
     }
 }
 
-function res($statusCode, $message){
-    header('Content-type: application/json', true, $statusCode);
-    echo $message;
+function post($input, $db){
+    $email = (isset($input['email']) && !empty($input['email'])) ? addslashes($input['email']): null;
+    $password = (isset($input['password']) && !empty($input['password'])) ? md5($input['password']): null;
+
+    if($email == null || $password == null) throw new Exception("Campos e-mail e senha obrigatórios.", HttpStatus::$BAD_REQUEST);
+
+    $sql = "SELECT * FROM user WHERE email = '{$email}' AND password = '{$password}'";
+
+    $mysqli_result = $db->query($sql);
+
+    if($mysqli_result->num_rows !== 1) throw new Exception("Dados inválidos", HttpStatus::$FORBIDDEN);
+    else{
+        $user = $mysqli_result->fetch_assoc();
+        $token = JWT::getToken($user);
+        $res = new Response(array(
+            "token" => $token,
+            "auth" => true,
+            "redirect" => "/"
+        ), 200);
+        $res->res();
+    }
 }
