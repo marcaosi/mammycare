@@ -3,8 +3,27 @@ import PubSub from 'pubsub-js'
 import './Util.css'
 import './Main.css'
 import utils from '../../utils'
+import {browserHistory} from 'react-router'
 
 class Login extends Component{
+
+    componentDidMount(){
+        const jwt = localStorage.getItem("jwt")
+        fetch(`${utils.api}login.php?jwt=${jwt}`)
+        .then(res => {
+            if(res.ok){
+                return res.json()
+            }else{
+                return false
+            }
+        }).then(data => {
+            if(data !== false && data.auth === true){
+                browserHistory.push("/")
+            }
+        }).catch(err => {
+            console.log("Impossível validar jwt." + err)
+        })
+    }
     
     render(){
         return (
@@ -231,7 +250,13 @@ class FormLogin extends Component{
             if(data === false){
                 this.setState({validate: "Impossível efetuar acesso com dados fornecidos.", showValidate: true})
             }else{
-                localStorage.setItem("jwt", data)
+                console.log(data)
+                if(data.auth){
+                    localStorage.setItem("jwt", data.token)
+                    if(data.redirect){
+                        browserHistory.push("/")
+                    }
+                }
             }
         }).catch(err => {
             this.setState({validate: 'Erro inesperado, tente novamente.', showValidate: true})
