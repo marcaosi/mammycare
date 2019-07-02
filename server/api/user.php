@@ -2,10 +2,11 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE");
 
-require_once("../utils/Database.php");
-require_once("../utils/HttpStatus.php");
+require_once("C:/wampp//utils/Database.php");
+// require_once("../utils/HttpStatus.php");
+// require_once("../utils/Response.php");
 try{
-    $db = new Database();
+    // $db = new Database();
 
     $input = [];
     parse_str(file_get_contents("php://input"),$input);
@@ -15,7 +16,7 @@ try{
             post($input, $db);
         break;
         case 'GET':
-            get($_GET, $db);
+            // get($_GET, $db);
         break;
         case 'PUT':
             put($input, $db);
@@ -27,6 +28,9 @@ try{
             delete($input['id'], $db);
         break;
     }
-}catch(Exception $e){
+
     
+}catch(Exception $e){
+    $res = new Response($e->getMessage(), $e->getCode());
+    $res->res();
 }

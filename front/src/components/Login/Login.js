@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
 import './Util.css'
 import './Main.css'
+import utils from '../../utils'
 
 class Login extends Component{
     
@@ -75,19 +76,21 @@ class FormSignUp extends Component{
                 password: this.state.password
             }
 
-            console.log(JSON.stringify(dados))
-
-            fetch('http://mammycare.progm.net.br/api/user.php', {
+            fetch(`${utils.api}user.php`, {
                 method: 'post',
                 body: JSON.stringify(dados)
             }).then(res => {
                 if(res.ok){
-                    return res.json()
+                    return res.text()
                 }else{
-                    alert('erro')
+                    return false
                 }
             }).then(data => {
-                alert('cadastro com sucesso.')
+                if(data === false){
+                    this.setState({validate: `Impossível salvar usuário.`, showValidate: true})
+                }else{
+                    this.changeForm()
+                }
             })
         }
     }
@@ -108,9 +111,9 @@ class FormSignUp extends Component{
     }
     
     showValidate(key){
-        console.log(key)
+        //console.log(key)
         this.setState({validate: `O campo ${key} deve ser preenchido corretamente`, showValidate: true})
-        console.log(this.state)
+        //console.log(this.state)
     }
 
     hideValidate(key){
@@ -132,7 +135,9 @@ class FormSignUp extends Component{
     }
 
     changeForm(event){
-        event.preventDefault()
+        if(event){
+            event.preventDefault()
+        }
         PubSub.publish('changeForm')
     }
     render(){
@@ -187,24 +192,69 @@ class FormSignUp extends Component{
 }
 
 class FormLogin extends Component{
+
+    constructor(){
+        super()
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    salvaAlteracao(nomeInput, event){
+        this.setState({[nomeInput]:event.target.value})
+    }
+
     changeForm(event){
         event.preventDefault()
         PubSub.publish('changeForm')
     }
+
+    login(event){
+        event.preventDefault()
+        
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        fetch(`${utils.api}login.php`, {
+            method: 'post',
+            body: JSON.stringify(user)
+        }).then(res => {
+            if(res.ok){
+                return res.json()
+            }else{
+                return false
+            }
+        }).then(data => {
+            if(data === false){
+                this.setState({validate: "Impossível efetuar acesso com dados fornecidos.", showValidate: true})
+            }else{
+                localStorage.setItem("jwt", data)
+            }
+        }).catch(err => {
+            this.setState({validate: 'Erro inesperado, tente novamente.', showValidate: true})
+        })
+    }
+
     render(){
         return (
-            <form className="login100-form validate-form p-l-55 p-r-55 p-t-178" id="form-login">
+            <form className="login100-form validate-form p-l-55 p-r-55 p-t-178" id="form-login" onSubmit={this.login.bind(this)}>
+                <div className="wrap-input100 validate-input m-b-16" data-validate="Por favor informe o seu nome">
+                    <p className="text-danger">{this.state.validate}</p>
+                </div>
                 <span className="login100-form-title">
                     Entrar
                 </span>
 
                 <div className="wrap-input100 validate-input m-b-16" data-validate="Por favor informe o E-mail">
-                    <input className="input100" type="text" name="username" placeholder="E-mail" />
+                    <input className="input100" type="text" name="username" placeholder="E-mail" value={this.state.email} onChange={this.salvaAlteracao.bind(this, 'email')} />
                     <span className="focus-input100"></span>
                 </div>
 
                 <div className="wrap-input100 validate-input" data-validate = "Por favor digite a senha">
-                    <input className="input100" type="password" name="pass" placeholder="Senha" />
+                    <input className="input100" type="password" name="pass" placeholder="Senha" value={this.state.password} onChange={this.salvaAlteracao.bind(this, 'password')} />
                     <span className="focus-input100"></span>
                 </div>
 
