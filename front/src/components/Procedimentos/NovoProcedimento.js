@@ -363,7 +363,7 @@ class NovoProcedimento extends Component{
                 const date = new Date()
                 data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
             }
-            console.log(data)
+            
             fetch(`${utils.api}procedimento.php`, {
                 method: 'post',
                 body: JSON.stringify(data)
@@ -381,7 +381,6 @@ class NovoProcedimento extends Component{
                         confirmButtonText: 'Ok'
                     })
                 }else{
-                    console.log(dados)
                     Swal.fire({
                         title: 'Sucesso!',
                         text: 'Registro salvo com sucesso',

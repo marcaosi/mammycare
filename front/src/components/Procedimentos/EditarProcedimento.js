@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {browserHistory} from 'react-router'
 import Swal from 'sweetalert2'
 import './procedimentos.css'
+import utils from '../../utils'
 
 class EditarProcedimento extends Component{
 
@@ -50,12 +51,9 @@ class EditarProcedimento extends Component{
 
     componentDidMount = async () => {
         const id = this.props.params.id
-        const res = await fetch(`http://mammycare.progm.net.br/api/procedimento.php?id=${id}`)
+        const res = await fetch(`${utils.api}procedimento.php?id=${id}`)
         const dados = await res.json()
-        this.setState({dados:dados[0]})
-
-        
-            
+        this.setState({dados:dados.data[0]})
     }
 
     handleChange(event){
@@ -334,6 +332,7 @@ class EditarProcedimento extends Component{
     }
 
     render(){
+        
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
@@ -351,26 +350,44 @@ class EditarProcedimento extends Component{
 
     nextStep = (event) => {
         event.preventDefault()
-        
+        const jwt = localStorage.getItem("jwt").split(".")
+        const user = JSON.parse(atob(jwt[1]))
+        let data = {
+            ...this.state.dados,
+        }
+
+        data.user_fk = data.user.id == null ? user.id : data.user.id
         if(this.state.step === 3){
-            console.log('salvar dados')
-            fetch('http://mammycare.progm.net.br/api/procedimento.php', {
+            if(data.dtnascbebe == ''){
+                const date = new Date()
+                data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+            }
+            fetch(`${utils.api}procedimento.php`, {
                 method: 'put',
-                body: JSON.stringify(this.state.dados)
+                body: JSON.stringify(data)
             }).then(res => {
                 if(res.ok)
                     return res.json()
                 else
-                    console.log("erro")
+                    return false
             }).then(dados => {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Registro alterado com sucesso',
-                    type: 'success',
-                    confirmButtonText: 'Ok'
-                }).then(log => {
-                    browserHistory.push('/procedimentos')
-                })
+                if(dados === false){
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Impossível salvar, tente novamente.',
+                        type: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }else{
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Registro alterado com sucesso',
+                        type: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then(log => {
+                        browserHistory.push('/procedimentos')
+                    })
+                }
             })
         }else{
             const newStep = (this.state.step + 1) % 4
