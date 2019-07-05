@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
 import './procedimentos.css'
+import utils from '../../utils'
 
 class Procedimentos extends Component{
     constructor(props){
@@ -14,20 +15,20 @@ class Procedimentos extends Component{
     }
 
     componentWillMount = () => {
-        fetch('http://mammycare.progm.net.br/api/procedimento.php')
+        fetch(`${utils.api}procedimento.php`)
             .then(res => {
                 if(res.ok){
                     return res.json()
                 }
             })
             .then(body => {
-                this.setState({procedimentos:body})
+                this.setState({procedimentos:body.data})
             })
     }
 
     delete = (id) => {
 
-        fetch('http://mammycare.progm.net.br/api/procedimento.php', {
+        fetch(`${utils.api}procedimento.php`, {
             method: 'delete',
             body: JSON.stringify({
                 id
