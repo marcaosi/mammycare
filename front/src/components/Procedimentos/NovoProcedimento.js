@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Swal from 'sweetalert2'
 import {browserHistory} from 'react-router'
 import './procedimentos.css'
+import utils from '../../utils'
 
 class NovoProcedimento extends Component{
 
@@ -171,31 +172,31 @@ class NovoProcedimento extends Component{
                             <label htmlFor="">Antes de mamar no peito recebeu?</label>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="leiteVaca" name="leiteVaca" checked={this.state.dados.leiteVaca} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="leiteVaca">
+                                <label className="form-check-label" htmlFor="leiteVaca">
                                     Leite de vaca
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="leitePo" name="leitePo" value={this.state.dados.leitePo} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="leitePo">
+                                <label className="form-check-label" htmlFor="leitePo">
                                     Leite em pó
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="Agua"name="agua" value={this.state.dados.agua} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="Agua">
+                                <label className="form-check-label" htmlFor="Agua">
                                     Água
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="cha" name="cha" value={this.state.dados.cha} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="cha">
+                                <label className="form-check-label" htmlFor="cha">
                                     Chá
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="soro" name="soro" value={this.state.dados.soro} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="soro">
+                                <label className="form-check-label" htmlFor="soro">
                                     Soro glicosado
                                 </label>
                             </div>
@@ -204,37 +205,37 @@ class NovoProcedimento extends Component{
                             <label htmlFor="">Outras informações</label>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="alojamentoConjunto" name="alojamentoConjunto" value={this.state.dados.alojamentoConjunto} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="alojamentoConjunto">
+                                <label className="form-check-label" htmlFor="alojamentoConjunto">
                                     Ficou em alojamento conjunto
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="expAmamentacao" name="expAmamentacao" value={this.state.dados.expAmamentacao} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="expAmamentacao">
+                                <label className="form-check-label" htmlFor="expAmamentacao">
                                     Já teve experiência em amamentação
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="lesaoAnterior" name="lesaoAnterior" value={this.state.dados.lesaoAnterior} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="lesaoAnterior">
+                                <label className="form-check-label" htmlFor="lesaoAnterior">
                                     Em experiências anteriores você teve algum tipo de lesão mamilar
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="apoioPosParto" name="apoioPosParto" value={this.state.dados.apoioPosParto} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="apoioPosParto">
+                                <label className="form-check-label" htmlFor="apoioPosParto">
                                     Teve apoio para amamentação após o parto
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="pretendeAmamentar" name="pretendeAmamentar" value={this.state.dados.pretendeAmamentar} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="pretendeAmamentar">
+                                <label className="form-check-label" htmlFor="pretendeAmamentar">
                                     Pretende amamentar
                                 </label>
                             </div>
                             <div className="form-check">
                                 <input className="form-check-input" type="checkbox" id="cansadaDeprimida" name="cansadaDeprimida" value={this.state.dados.cansadaDeprimida} onChange={this.handleChange}/>
-                                <label className="form-check-label" for="cansadaDeprimida">
+                                <label className="form-check-label" htmlFor="cansadaDeprimida">
                                     Sente-se cansada ou deprimida
                                 </label>
                             </div>
@@ -306,13 +307,13 @@ class NovoProcedimento extends Component{
                         <label>Outros problemas correntes que dificultam a amamentação</label>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="candidiase" name="candidiase" value={this.state.dados.candidiase} onChange={this.handleChange}/>
-                            <label className="form-check-label" for="candidiase">
+                            <label className="form-check-label" htmlFor="candidiase">
                                 Candidíase ou Monilíase Mamária
                             </label>
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="reynaud" name="reynaud" value={this.state.dados.reynaud} onChange={this.handleChange}/>
-                            <label className="form-check-label" for="reynaud">
+                            <label className="form-check-label" htmlFor="reynaud">
                                 Fenômeno de Reynaud
                             </label>
                         </div>
@@ -347,25 +348,49 @@ class NovoProcedimento extends Component{
 
     nextStep = (event) => {
         event.preventDefault()
+        const jwt = localStorage.getItem("jwt").split(".")
+        const user = JSON.parse(atob(jwt[1]))
+        let data = {
+            ...this.state.dados,
+        }
+
+        data.user_fk = user.id
+
+        // console.log(data)
+        // return;
         if(this.state.step === 3){
-            console.log('salvar dados')
-            fetch('http://mammycare.progm.net.br/api/procedimento.php', {
+            if(data.dtnascbebe == ''){
+                const date = new Date()
+                data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+            }
+            console.log(data)
+            fetch(`${utils.api}procedimento.php`, {
                 method: 'post',
-                body: JSON.stringify(this.state.dados)
+                body: JSON.stringify(data)
             }).then(res => {
                 if(res.ok)
                     return res.json()
                 else
-                    console.log("erro")
+                    return false
             }).then(dados => {
-                Swal.fire({
-                    title: 'Sucesso!',
-                    text: 'Registro salvo com sucesso',
-                    type: 'success',
-                    confirmButtonText: 'Ok'
-                }).then(log => {
-                    browserHistory.push('/procedimentos')
-                })
+                if(dados === false){
+                    Swal.fire({
+                        title: 'Erro!',
+                        text: 'Impossível salvar, tente novamente.',
+                        type: 'error',
+                        confirmButtonText: 'Ok'
+                    })
+                }else{
+                    console.log(dados)
+                    Swal.fire({
+                        title: 'Sucesso!',
+                        text: 'Registro salvo com sucesso',
+                        type: 'success',
+                        confirmButtonText: 'Ok'
+                    }).then(log => {
+                        browserHistory.push('/procedimentos')
+                    })
+                }
             })
         }else{
             const newStep = (this.state.step + 1) % 4
