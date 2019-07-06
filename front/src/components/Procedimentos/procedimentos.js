@@ -46,6 +46,11 @@ class Procedimentos extends Component{
         return (
             <main className="container-fluid table-responsive">
                 <div className="row justify-content-md-center">
+                    <div className="col-9 text-right">
+                        <a href="/procedimentos/novo" className="btn btn-sm">Novo Procedimento</a>
+                    </div>
+                </div>
+                <div className="row justify-content-md-center">
                     <div className="col-9">
                         <table className="table table-striped">
                             <thead>
