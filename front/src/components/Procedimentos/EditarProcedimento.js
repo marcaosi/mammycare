@@ -51,7 +51,9 @@ class EditarProcedimento extends Component{
 
     componentDidMount = async () => {
         const id = this.props.params.id
-        const res = await fetch(`${utils.api}procedimento.php?id=${id}`)
+        const jwt = localStorage.getItem("jwt").split(".")
+        const user = atob(jwt[1])
+        const res = await fetch(`${utils.api}procedimento.php?id=${id}&user=${user}`)
         const dados = await res.json()
         this.setState({dados:dados.data[0]})
     }
@@ -364,7 +366,9 @@ class EditarProcedimento extends Component{
             }
             fetch(`${utils.api}procedimento.php`, {
                 method: 'put',
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    data, user
+                })
             }).then(res => {
                 if(res.ok)
                     return res.json()

@@ -22,7 +22,7 @@ class Procedimentos extends Component{
     componentWillMount = async () => {
         axios.get(`${utils.api}procedimento.php?user=${this.state.jwt}`)
             .then(res => {
-                if(res.status === 200){
+                if(res.status === 200 || res.status === 203){
                     console.log(res)
                     const procedimentos = res.data.data ? res.data.data : []
                     this.setState({procedimentos, errorMessage: ''})
