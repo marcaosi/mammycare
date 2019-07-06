@@ -2,8 +2,8 @@
 
 abstract class JWT{
     public static function decodeToken($token, $secret = 'mammycare'){
-
-        $token = explode(".", $token);
+        
+        $token = explode(".", str_ireplace("Bearer ", "", $token));
         if($token == false) throw new Exception("Token inválido.", 403);
 
         $header = $token[0];

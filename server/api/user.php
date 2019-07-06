@@ -32,7 +32,7 @@ try{
 }
 
 function put($input, $db){
-    $user = validate($input, $db, true);
+    $user = User::validate($input, $db, true);
 
     $sql = "UPDATE user SET name='{$user["name"]}', password='{$user["password"]}', profession='{$user["profession"]}' WHERE id={$user["id"]}";
 
@@ -68,7 +68,7 @@ function delete($id, $db){
 }
 
 function post($input, $db){
-    $user = validate($input, $db);
+    $user = User::validate($input, $db);
 
     $sql = "INSERT INTO user (name, email, password, profession) VALUES ('{$user["name"]}', '{$user["email"]}', '{$user["password"]}', '{$user["profession"]}');";
 

@@ -1,30 +1,66 @@
 <?php
 
+header("Access-Control-Allow-Methods: *");
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE");
 
 require_once(dirname(__FILE__)."/../utils/Database.php");
 require_once(dirname(__FILE__)."/../utils/HttpStatus.php");
+require_once(dirname(__FILE__)."/../utils/JWT.php");
 require_once(dirname(__FILE__)."/../utils/Response.php");
 require_once(dirname(__FILE__)."/../Validations/Procedimento.php");
+require_once(dirname(__FILE__)."/../Validations/User.php");
 
 try{
     $db = new Database();
 
+    $method = $_SERVER["REQUEST_METHOD"];
+    
     $input = file_get_contents("php://input");
     $input = json_decode($input, true);
-    switch($_SERVER["REQUEST_METHOD"]){
+    $user = null;
+    if($method == 'GET'){
+        if((isset($_GET['user']) && !empty($_GET['user']))){
+            $user = json_decode($_GET['user'], true);
+            if($user === null){
+                $user = $_GET['user'];
+            }
+        }
+        else
+            throw new Exception("Obrigatório enviar usuário como parâmetro da requisição,", HttpStatus::$FORBIDDEN);
+    }else if($method !== 'OPTIONS'){
+        if(!isset($input['user']) || empty($input['user']))
+            throw new Exception("Obrigatório enviar usuário no corpo da requisição,", HttpStatus::$FORBIDDEN);
+        else
+            $user = $input["user"];
+
+        
+        
+        
+        if(!isset($input['data']) || empty($input['data']))
+            $input = array();
+        else
+            $input = $input["data"];
+    }
+    // var_dump($user);
+    // exit;
+    
+    if($user !== null){
+        $user = (is_array($user)) ? $user : json_decode(base64_decode($user), true);
+    }
+
+        
+    switch($method){
         case 'POST':
-            post($input, $db);
+            post($input, $db, $user);
         break;
         case 'GET':
-             get($_GET, $db);
+             get($_GET, $db, $user);
         break;
         case 'PUT':
-            put($input, $db);
+            put($input, $db, $user);
         break;
         case 'DELETE':
-            delete($input, $db);
+            delete($input, $db, $user);
         break;
     }
 }catch(Exception $e){
@@ -32,11 +68,13 @@ try{
     $res->res();
 }
 
-function put($input, $db){
-    $procedimento = validate($input, true);
+function put($input, $db, $user){
+    $procedimento = Procedimento::validate($input, true);
+
+    if($procedimento["user_fk"] !== $user["id"])
+        throw new Exception("Acesso Negado.", HttpStatus::$FORBIDDEN);
 
     $sql = "UPDATE procedimento SET
-    user_fk = ".getValue($procedimento, "user_fk").",
     nommae = ".getValue($procedimento, "nommae").",
     nombebe = ".getValue($procedimento, "nombebe").",
     dtnascbebe = ".getValue($procedimento, "dtnascbebe").",
@@ -70,7 +108,7 @@ function put($input, $db){
     dor = ".getValue($procedimento, "dor").",
     candidiase = ".getValue($procedimento, "candidiase").",
     reynaud = ".getValue($procedimento, "reynaud")."
-    WHERE id = {$procedimento["id"]} LIMIT 1;";
+    WHERE id = {$procedimento["id"]} AND user_fk = {$user["id"]} LIMIT 1;";
 
     $mysqli_result = $db->query($sql);
 
@@ -102,9 +140,12 @@ function getValue($procedimento, $field){
     return "'{$procedimento[$field]}'";
 }
 
-function post($input, $db){
-    $procedimento = validate($input);
-
+function post($input, $db, $user){
+    $procedimento = Procedimento::validate($input);
+    
+    if($procedimento["user_fk"] !== $user["id"])
+        throw new Exception("Inserção inválida.", HttpStatus::$FORBIDDEN);
+        
     $sql = "INSERT INTO procedimento(user_fk, nommae, nombebe, dtnascbebe, condnasc, idgest, idmae, fumo, alcool, cafe, medicamentos, drogas, prenatal, parto, primMamada, leiteVaca, leitePo, agua, cha, soro, alojamentoConjunto, expAmamentacao, lesaoAnterior, apoioPosParto, pretendeAmamentar, cansadaDeprimida, solucaoContinuidade, localizacao, descricao, secrecao, tecido, dor, candidiase, reynaud)
     VALUES (
     ".getValue($procedimento, 'user_fk').",
@@ -145,7 +186,7 @@ function post($input, $db){
 
     $mysqli_result = $db->query($sql);
 
-    if(!$mysqli_result) throw new Exception("Impossível gravar registro.", HttpStatus::$BAD_SERVER);
+    if(!$mysqli_result) throw new Exception($sql, HttpStatus::$BAD_SERVER);
     else{
         $procedimento['id'] = $db->insert_id;
         $res = new Response(array(
@@ -158,13 +199,13 @@ function post($input, $db){
     }
 }
 
-function delete($input, $db){
+function delete($input, $db, $user){
     if(!isset($input['id']) || empty($input['id']))
         throw new Exception("Campo id obrigatório.", HttpStatus::$BAD_REQUEST);
 
     $id = addslashes($input['id']);
 
-    $sql = "DELETE FROM procedimento WHERE id = {$id} LIMIT 1;";
+    $sql = "DELETE FROM procedimento WHERE id = {$id} AND user_fk={$user["id"]} LIMIT 1;";
 
     $mysqli_result = $db->query($sql);
 
@@ -179,7 +220,7 @@ function delete($input, $db){
         throw new Exception("Falha ao excluir. Tente novamente.", HttpStatus::$BAD_SERVER);
 }
 
-function get($input, $db){
+function get($input, $db, $user){
     $sql = "SELECT A.*, B.name, B.email, B.profession FROM procedimento A INNER JOIN user B ON (B.id = A.user_fk) WHERE 1=1 ";
 
     if(isset($input['nommae']) && !empty($input['nommae'])){
@@ -192,10 +233,7 @@ function get($input, $db){
         $sql .= "AND A.nombebe LIKE '%{$nombebe}%' ";
     }
 
-    if(isset($input['user']) && !empty($input['user'])){
-        $user = addslashes($input['user']);
-        $sql .= "AND A.user_fk = {$user} ";
-    }
+    $sql .= "AND A.user_fk = {$user["id"]} ";
 
     if(isset($input['id']) && !empty($input['id'])){
         $id = addslashes($input['id']);
