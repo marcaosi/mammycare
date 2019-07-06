@@ -358,7 +358,7 @@ class EditarProcedimento extends Component{
 
         data.user_fk = data.user.id == null ? user.id : data.user.id
         if(this.state.step === 3){
-            if(data.dtnascbebe == ''){
+            if(data.dtnascbebe === ''){
                 const date = new Date()
                 data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
             }

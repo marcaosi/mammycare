@@ -359,7 +359,7 @@ class NovoProcedimento extends Component{
         // console.log(data)
         // return;
         if(this.state.step === 3){
-            if(data.dtnascbebe == ''){
+            if(data.dtnascbebe === ''){
                 const date = new Date()
                 data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
             }

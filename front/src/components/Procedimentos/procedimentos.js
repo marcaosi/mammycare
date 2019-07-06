@@ -2,49 +2,44 @@ import React, {Component} from 'react'
 import {Link} from 'react-router'
 import './procedimentos.css'
 import utils from '../../utils'
+const axios = require("axios")
 
 class Procedimentos extends Component{
     constructor(props){
         super(props)
 
+        const jwt = localStorage.getItem("jwt").split(".")[1]
+
         this.state = {
-            procedimentos: []
+            procedimentos: [],
+            jwt,
+            errorMessage: ''
         }
 
         this.delete = this.delete.bind(this)
     }
 
-    componentWillMount = () => {
-        fetch(`${utils.api}procedimento.php`)
+    componentWillMount = async () => {
+        axios.get(`${utils.api}procedimento.php?user=${this.state.jwt}`)
             .then(res => {
-                if(res.ok){
-                    return res.json()
+                if(res.status === 200){
+                    console.log(res)
+                    const procedimentos = res.data.data ? res.data.data : []
+                    this.setState({procedimentos, errorMessage: ''})
+                }else{
+                    this.setState({errorMessage: 'Falha ao carregar os dados.'})
                 }
-            })
-            .then(body => {
-                this.setState({procedimentos:body.data})
             })
     }
 
     delete = (id) => {
-
-        fetch(`${utils.api}procedimento.php`, {
-            method: 'delete',
-            body: JSON.stringify({
-                id
+        axios.delete(`${utils.api}procedimento.php`, {
+            data: JSON.stringify({
+                data: {id},
+                user: this.state.jwt
             })
         })
-            .then(res => {
-                if(res.ok){
-                    return res.json()
-                }else{
-                    console.log('erro')
-                }
-            })
-            .then(body => {
-                const procedimentos = this.state.procedimentos.filter(procedimento => procedimento.id !== id)
-                this.setState({procedimentos})
-            })
+        
     }
 
     render(){
@@ -63,7 +58,7 @@ class Procedimentos extends Component{
                             </thead>
                             <tbody>
                                 {
-                                    this.state.procedimentos.length === 0 ? <tr><td colSpan="4"><p className='text-center'>Nenhum dado registrado</p></td></tr>: ''
+                                    this.state.procedimentos.length === 0 ? <tr><td colSpan="4"><p className='text-center'>{this.state.errorMessage === '' ? <p>Nenhum dado registrado</p> : <p>{this.state.errorMessage}</p>}</p></td></tr>: <tr></tr>
                                 }
                                 {
                                     this.state.procedimentos.map(proc => {
