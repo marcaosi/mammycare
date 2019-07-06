@@ -366,7 +366,10 @@ class NovoProcedimento extends Component{
             
             fetch(`${utils.api}procedimento.php`, {
                 method: 'post',
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+                    data,
+                    user
+                })
             }).then(res => {
                 if(res.ok)
                     return res.json()
