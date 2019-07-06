@@ -9,20 +9,22 @@ class Login extends Component{
 
     componentDidMount(){
         const jwt = localStorage.getItem("jwt")
-        fetch(`${utils.api}login.php?jwt=${jwt}`)
-        .then(res => {
-            if(res.ok){
-                return res.json()
-            }else{
-                return false
-            }
-        }).then(data => {
-            if(data !== false && data.auth === true){
-                browserHistory.push("/")
-            }
-        }).catch(err => {
-            console.log("Impossível validar jwt." + err)
-        })
+        if(jwt){
+            fetch(`${utils.api}login.php?jwt=${jwt}`)
+                .then(res => {
+                    if(res.ok){
+                        return res.json()
+                    }else{
+                        return false
+                    }
+                }).then(data => {
+                    if(data !== false && data.auth === true){
+                        browserHistory.push("/")
+                    }
+                }).catch(err => {
+                    console.log("Impossível validar jwt." + err)
+                })
+        }
     }
     
     render(){
