@@ -13,6 +13,14 @@ class NovoProcedimento extends Component{
 
         this.state = {
             step: 0,
+            resultado: {
+                vesicula: 0,
+                escoriacao: 0,
+                dilaceracao: 0,
+                erosao: 0,
+                fissura: 0
+            },
+            result: '',
             dados: {
                 user_fk: user?user.id:0,
                 nommae:'',
@@ -55,6 +63,10 @@ class NovoProcedimento extends Component{
         this.handleChange = this.handleChange.bind(this)
     }
 
+    componentDidMount(){
+        this.setState({result:''})
+    }
+
     handleChange(event){
         const field = event.target.name
         const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
@@ -67,7 +79,7 @@ class NovoProcedimento extends Component{
         0: "Dados gerais",
         1: "Gravidez, nascimento, primeiros alimentos e experiência em amamentação",
         2: "Avaliação",
-        3: "Diagnóstico"
+        3: ""
     }
 
     forms = {
@@ -324,10 +336,82 @@ class NovoProcedimento extends Component{
         3: () => {
             return (
                 <div>
-                    
+                    {
+                        this.showResult()
+                    }
                 </div>
             )
         }
+    }
+
+    showResult(){
+        switch(this.state.result){
+            case 'vesicula': return this.results.vesicula()
+            case 'escoriacao': return this.results.escoriacao()
+            case 'dilaceracao': return this.results.dilaceracao()
+            case 'erosao': return this.results.erosao()
+            case 'fissura': return this.results.fissura()
+            default: return ''
+        }
+    }
+
+    results = {
+        vesicula: () => (
+            <div>
+                <h2>Vesícula</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/vesicula")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        escoriacao: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/escoriacao")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        dilaceracao: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/dilaceracao")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        erosao: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/erosao")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        fissura: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/fissura")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        reynaud: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/reynaud")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        ),
+        candidiase: () => (
+            <div>
+                <h2>Escoriação</h2>
+                <button className="btn btn-success" onClick={() => {
+                    browserHistory.push("/informacoes/tipos_lesoes/reynaud")
+                }}>Clique aqui para ver as informações.</button>
+            </div>
+        )
     }
 
     render(){
@@ -338,7 +422,14 @@ class NovoProcedimento extends Component{
                         <h4>{this.titles[this.state.step]}</h4>
                         <form onSubmit={this.nextStep}>
                             {this.forms[this.state.step]()}
-                            <button className="btn btn-mammycare">Avançar</button>
+                            {
+                                this.state.result === ''? 
+                                    <button className="btn btn-mammycare">Avançar</button> :
+                                    <button className="btn btn-mammycare" onClick={() => {
+                                        this.save()
+                                        return false
+                                    }}>Salvar</button>
+                            }
                         </form>
                     </div>
                 </div>
@@ -346,55 +437,151 @@ class NovoProcedimento extends Component{
         )
     }
 
-    nextStep = (event) => {
-        event.preventDefault()
+    save = () => {
         const jwt = localStorage.getItem("jwt").split(".")
         const user = JSON.parse(atob(jwt[1]))
         let data = {
             ...this.state.dados,
         }
-
         data.user_fk = user.id
 
-        // console.log(data)
-        // return;
-        if(this.state.step === 3){
-            if(data.dtnascbebe === ''){
-                const date = new Date()
-                data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
-            }
-            
-            fetch(`${utils.api}procedimento.php`, {
-                method: 'post',
-                body: JSON.stringify({
-                    data,
-                    user
-                })
-            }).then(res => {
-                if(res.ok)
-                    return res.json()
-                else
-                    return false
-            }).then(dados => {
-                if(dados === false){
-                    Swal.fire({
-                        title: 'Erro!',
-                        text: 'Impossível salvar, tente novamente.',
-                        type: 'error',
-                        confirmButtonText: 'Ok'
-                    })
-                }else{
-                    Swal.fire({
-                        title: 'Sucesso!',
-                        text: 'Registro salvo com sucesso',
-                        type: 'success',
-                        confirmButtonText: 'Ok'
-                    }).then(log => {
-                        browserHistory.push('/procedimentos')
-                    })
-                }
+        if(data.dtnascbebe === ''){
+            const date = new Date()
+            data.dtnascbebe = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+        }
+
+        fetch(`${utils.api}procedimento.php`, {
+            method: 'post',
+            body: JSON.stringify({
+                data,
+                user
             })
+        }).then(res => {
+            if(res.ok)
+                return res.json()
+            else
+                return false
+        }).then(dados => {
+            if(dados === false){
+                Swal.fire({
+                    title: 'Erro!',
+                    text: 'Impossível salvar, tente novamente.',
+                    type: 'error',
+                    confirmButtonText: 'Ok'
+                })
+            }else{
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Registro salvo com sucesso',
+                    type: 'success',
+                    confirmButtonText: 'Ok'
+                }).then(log => {
+                    browserHistory.push('/procedimentos')
+                })
+            }
+        })
+    }
+
+    calcResult = () => {
+        let resultado = this.state.resultado
+        if(this.state.dados.solucaoContinuidade === 'ausente'){
+            resultado.vesicula++
         }else{
+            resultado.escoriacao++
+            resultado.dilaceracao++
+            resultado.erosao++
+            resultado.fissura++
+        }
+
+        if(this.state.dados.localizacao === 'baseponta'){
+            resultado.fissura++
+        }else if(this.state.dados.localizacao === 'mamilo'){
+            resultado.vesicula++
+            resultado.fissura++
+        }else if(this.state.dados.localizacao === 'areola'){
+            resultado.escoriacao++
+        }else if(this.state.dados.localizacao === 'mamiloareola'){
+            resultado.dilaceracao++
+        }else{
+            resultado.escoriacao++
+            resultado.fissura++
+        }
+
+        if(this.state.dados.descricao === 'bolha'){
+            resultado.vesicula++
+        }else if(this.state.dados.descricao === 'esfolado'){
+            resultado.escoriacao++
+        }else if(this.state.dados.descricao === 'dilacerado'){
+            resultado.dilaceracao++
+        }else if(this.state.dados.descricao === 'ralado'){
+            resultado.erosao++
+        }else if(this.state.dados.descricao === 'linear'){
+            resultado.fissura++
+        }else if(this.state.dados.descricao === 'circundante'){
+            resultado.fissura++
+        }else if(this.state.dados.descricao === 'mista'){
+            resultado.fissura++
+        }
+        
+        if(this.state.dados.secrecao === 'sem'){
+            resultado.dilaceracao++
+        }else if(this.state.dados.secrecao === 'transparente'){
+            resultado.vesicula++
+        }else if(this.state.dados.secrecao === 'sanguinolenta'){
+            resultado.escoriacao++
+            resultado.fissura++
+        }
+
+        if(this.state.dados.tecido === 'epiderme'){
+            resultado.vesicula++
+            resultado.escoriacao++
+            resultado.dilaceracao++
+        }else if(this.state.dados.tecido === 'derme'){
+            resultado.erosao++
+        }else if(this.state.dados.tecido === 'epidermeEDerme'){
+            resultado.fissura++
+        }else if(this.state.dados.tecido === 'superficial'){
+            resultado.fissura++
+        }
+        
+        if(this.state.dados.dor === 'semDor'){
+            
+        }else if(this.state.dados.dor === 'duranteComPiora'){
+            resultado.vesicula++
+        }else if(this.state.dados.dor === 'durante'){
+            resultado.escoriacao++
+        }else if(this.state.dados.dor === 'inicioESome'){
+            resultado.dilaceracao++
+            resultado.fissura++
+        }else if(this.state.dados.dor === 'intensaDurante'){
+            resultado.vesicula++
+        }
+
+        let maior = 0
+        const keys = Object.keys(resultado)
+        let result = ''
+
+        keys.forEach(key => {
+            
+            if(resultado[key] > maior){
+                result = key
+                maior = resultado[key]
+            }
+                
+        })
+
+        return result
+    }
+
+    nextStep = (event) => {
+        event.preventDefault()
+        
+        if(this.state.step === 2){
+            const result = this.calcResult()
+            this.setState({result})
+        }
+        
+        if(this.state.step !== 3){
             const newStep = (this.state.step + 1) % 4
             this.setState({step: newStep, form: this.forms[newStep]()})
         }
