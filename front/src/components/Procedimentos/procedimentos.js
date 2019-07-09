@@ -38,6 +38,11 @@ class Procedimentos extends Component{
                 data: {id},
                 user: this.state.jwt
             })
+        }).then(res => {
+            if(res.status = 203){
+                let procedimentos = this.state.procedimentos.filter(p => p.id !== id)
+                this.setState({procedimentos})
+            }
         })
         
     }
@@ -63,7 +68,7 @@ class Procedimentos extends Component{
                             </thead>
                             <tbody>
                                 {
-                                    this.state.procedimentos.length === 0 ? <tr><td colSpan="4"><p className='text-center'>{this.state.errorMessage === '' ? <p>Nenhum dado registrado</p> : <p>{this.state.errorMessage}</p>}</p></td></tr>: <tr></tr>
+                                    this.state.procedimentos.length === 0 ? <tr><td colSpan="4" className="text-center">{this.state.errorMessage === '' ? <p>Nenhum dado registrado</p> : <p>{this.state.errorMessage}</p>}</td></tr>: <tr></tr>
                                 }
                                 {
                                     this.state.procedimentos.map(proc => {
