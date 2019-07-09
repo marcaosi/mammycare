@@ -14,3 +14,7 @@ img{
 .btn-mammycare:hover{
     filter: brightness(.9);
 }
+
+.btn-block, .text-pink{
+    color: #f2add9;
+}

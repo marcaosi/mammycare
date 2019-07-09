@@ -357,59 +357,91 @@ class NovoProcedimento extends Component{
 
     results = {
         vesicula: () => (
-            <div>
-                <h2>Vesícula</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/vesicula")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    <h2>O seu diagnóstico é: Vesícula</h2>
+                    <br/><button className="btn-block btn btn-default" onClick={() => {
+                        window.open("/informacoes/tipos_lesoes/vesicula", "_blank")
+                    }}>Clique aqui para ver as informações.</button><br />
+                    {this.results.reynaud()}
+                    {this.results.candidiase()}
+                    <br />
+                </div>
             </div>
         ),
         escoriacao: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/escoriacao")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    <h2>O seu diagnóstico é: Escoriação</h2>
+                    <br/><button className="btn-block btn btn-default" onClick={() => {
+                        window.open("/informacoes/tipos_lesoes/escoriacao", "_blank")
+                    }}>Clique aqui para ver as informações.</button><br />
+                    {this.results.reynaud()}
+                    {this.results.candidiase()}
+                    <br />
+                </div>
             </div>
         ),
         dilaceracao: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/dilaceracao")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    <h2>O seu diagnóstico é: Dilaceração</h2>
+                    <br/><button className="btn-block btn btn-default" onClick={() => {
+                        window.open("/informacoes/tipos_lesoes/dilaceracao", "_blank")
+                    }}>Clique aqui para ver as informações.</button><br />
+                    {this.results.reynaud()}
+                    {this.results.candidiase()}
+                    <br />
+                </div>
             </div>
         ),
         erosao: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/erosao")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    <h2>O seu diagnóstico é: Erosão</h2>
+                    <br/><button className="btn-block btn btn-default" onClick={() => {
+                        window.open("/informacoes/tipos_lesoes/erosao", "_blank")
+                    }}>Clique aqui para ver as informações.</button><br />
+                    {this.results.reynaud()}
+                    {this.results.candidiase()}
+                    <br />
+                </div>
             </div>
         ),
         fissura: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/fissura")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    <h2>O seu diagnóstico é: Fissura</h2>
+                    <br/><button className="btn-block btn btn-default" onClick={() => {
+                        window.open("/informacoes/tipos_lesoes/fissura", "_blank")
+                    }}>Clique aqui para ver as informações.</button><br />
+                    
+                    {this.results.reynaud()}
+                    <br />
+                </div>
+                {this.results.candidiase()}
             </div>
         ),
         reynaud: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/reynaud")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    {
+                        (this.state.dados.reynaud)? <button className="btn btn-default text-pink" onClick={() => {
+                            window.open("/informacoes/tipos_lesoes/reynaud", "_blank")
+                        }}>Ver informações sobre o Fenômeno de Reynaud</button> : ''
+                    }
+                </div>
             </div>
         ),
         candidiase: () => (
-            <div>
-                <h2>Escoriação</h2>
-                <button className="btn btn-success" onClick={() => {
-                    browserHistory.push("/informacoes/tipos_lesoes/reynaud")
-                }}>Clique aqui para ver as informações.</button>
+            <div className="row">
+                <div className="col-12">
+                    {
+                        (this.state.dados.candidiase)? <button className="btn btn-default text-pink" onClick={() => {
+                            window.open("/informacoes/tipos_lesoes/candidiase", "_blank")
+                        }}>Ver informações sobre Candidíase</button> : ''
+                    }
+                </div>
             </div>
         )
     }
@@ -479,6 +511,8 @@ class NovoProcedimento extends Component{
                     browserHistory.push('/procedimentos')
                 })
             }
+        }).catch(err => {
+            console.log(err)
         })
     }
 
