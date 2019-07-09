@@ -14,6 +14,7 @@ import Prevencao from './components/Prevencao/Prevencao';
 import Procedimentos from './components/Procedimentos/procedimentos';
 import NovoProcedimento from './components/Procedimentos/NovoProcedimento';
 import EditarProcedimento from './components/Procedimentos/EditarProcedimento';
+import Home from './components/Home'
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -31,6 +32,7 @@ ReactDOM.render((
                 <Route path=":id" component={EditarProcedimento}/>
             </Route>
             <Route path="prevencao" component={Prevencao}/>
+            <Route path="/home" component={Home} />
         </Route>
         <Route path="/login" component={Login} />
         <Route path="logout" component={Logout} />
