@@ -9,6 +9,8 @@ class App extends Component {
   componentWillMount(){
     if(!localStorage.getItem("jwt"))
       browserHistory.push("/login")
+    else if(this.props.location.pathname === "/")
+      browserHistory.push("/home")
   }
   render() {
     return (
