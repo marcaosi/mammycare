@@ -10,10 +10,10 @@ class Informacoes extends Component{
                         <h2 className="title-page"><Link to="/informacoes">Informações</Link> <hr/></h2>
 
                         <div className="row container-cards">
-                            <Link to="/informacoes/ilustracoes" className="col card">
+                            <Link to="/informacoes/ilustracoes" className="col-xs-12 col-sm-6 card">
                                 <p>Ilustrações</p>
                             </Link>
-                            <Link to="/informacoes/tipos_lesoes" className="col card">
+                            <Link to="/informacoes/tipos_lesoes" className="col-xs-12 col-sm-6 card">
                                 <p>Tipos de Lesões</p>
                             </Link>
                         </div>

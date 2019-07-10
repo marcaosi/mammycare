@@ -45,7 +45,7 @@ main{
 }
 
 .card{
-  margin: 0 5%;
+  margin: 15px 0;
   background-color: white;
   border: 3px solid rgba(242, 173, 217, .2);
   border-radius: 20px;

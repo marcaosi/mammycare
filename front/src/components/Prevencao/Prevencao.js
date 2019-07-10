@@ -71,28 +71,28 @@ export default class Prevencao extends Component{
     showMenu(){
         return (<div>
             <div className="row container-cards">
-                <div onClick={this.setCuidadosGerais.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setCuidadosGerais.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Cuidados Gerais com as Mamas e Mamilos</p>
                 </div><br/>
-                <div onClick={this.setTecnicas.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setTecnicas.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Técnicas de Amamentação</p>
                 </div>
             </div>
 
             <div className="row container-cards">
-                <div onClick={this.setOrientacoes.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setOrientacoes.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Orientações para o processo de amamentação</p>
                 </div><br/>
-                <div onClick={this.setRetiradaLeite.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setRetiradaLeite.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Retirada do leite das mamas</p>
                 </div>
             </div>
             
             <div className="row container-cards">
-                <div onClick={this.setAcessorios.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setAcessorios.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Bicos e outros acessórios</p>
                 </div><br/>
-                <div onClick={this.setAspectos.bind(this)} className="col-xs-12 col-sm-6 card">
+                <div onClick={this.setAspectos.bind(this)} className="col-xs-12 col-md-6 card">
                     <p>Aspectos subjetivos</p>
                 </div>
             </div>
