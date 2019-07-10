@@ -6,7 +6,7 @@ class Footer extends Component{
         return (
             <footer className="container-fluid">
                 <div className="row bg-light-pink justify-content-md-center">
-                    <div className="col-xs-12 col-8 credits">
+                    <div className="col-xs-12 col-sm-8 credits">
                         <h5>Conteúdo desenvolvido no Mestrado Profissional em Ciências aplicas à Saúde - Univás</h5>
                         <p>
                                 Aluna: Iaura Mônica Cunha da Silva Esteves (iauramonica@ig.com.br)<br/>
