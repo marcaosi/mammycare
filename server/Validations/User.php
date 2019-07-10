@@ -24,7 +24,7 @@ abstract class User{
             if(!isset($data['id']) || empty($data['id']))
                 throw new Exception("Campo ID obrigatório.", HttpStatus::$BAD_REQUEST);
         }else{
-            if(!isValidEmail($data['email'], $db))
+            if(!User::isValidEmail($data['email'], $db))
                 throw new Exception("Campo e-mail é obrigatório e deve ser inserido um e-mail válido.", HttpStatus::$BAD_REQUEST);
         }
     

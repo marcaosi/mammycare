@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router'
+import {Link, browserHistory} from 'react-router'
 import './procedimentos.css'
 import utils from '../../utils'
 const axios = require("axios")
@@ -52,7 +52,7 @@ class Procedimentos extends Component{
             <main className="container-fluid table-responsive">
                 <div className="row justify-content-md-center">
                     <div className="col-9 text-right">
-                        <a href="/procedimentos/novo" className="btn btn-sm">Novo Procedimento</a>
+                        <Link to="/procedimentos/novo">Novo Procedimento</Link>
                     </div>
                 </div>
                 <div className="row justify-content-md-center">

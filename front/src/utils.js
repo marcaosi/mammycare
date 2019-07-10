@@ -1,5 +1,5 @@
 const utils = {
-    api: 'http://localhost/mammycare/api/'
+    api: 'http://mammycare.progm.net.br/server/api/'
 }
 
 export default utils
