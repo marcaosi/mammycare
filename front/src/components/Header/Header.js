@@ -8,7 +8,7 @@ class Header extends Component{
         return (
             <header className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-4 content-logo">
+                    <div className="col-xs-12 col-sm-4 content-logo">
                         <img className="img-logo-header" src={logo} alt="MammyCare"/>
                     </div>
                 </div>
