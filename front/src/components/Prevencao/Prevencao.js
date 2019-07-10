@@ -53,7 +53,7 @@ export default class Prevencao extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
+                    <div className="col-xs-12 col-md-8">
                         <h2 className="title-page"><Link to="/prevencao" onClick={this.clickPrevencao}>Prevenção</Link><hr/></h2>
                         {
                             this.state.menu ? this.showMenu() : ''
@@ -71,28 +71,28 @@ export default class Prevencao extends Component{
     showMenu(){
         return (<div>
             <div className="row container-cards">
-                <div onClick={this.setCuidadosGerais.bind(this)} className="col card">
+                <div onClick={this.setCuidadosGerais.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Cuidados Gerais com as Mamas e Mamilos</p>
-                </div>
-                <div onClick={this.setTecnicas.bind(this)} className="col card">
+                </div><br/>
+                <div onClick={this.setTecnicas.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Técnicas de Amamentação</p>
                 </div>
             </div>
 
             <div className="row container-cards">
-                <div onClick={this.setOrientacoes.bind(this)} className="col card">
+                <div onClick={this.setOrientacoes.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Orientações para o processo de amamentação</p>
-                </div>
-                <div onClick={this.setRetiradaLeite.bind(this)} className="col card">
+                </div><br/>
+                <div onClick={this.setRetiradaLeite.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Retirada do leite das mamas</p>
                 </div>
             </div>
             
             <div className="row container-cards">
-                <div onClick={this.setAcessorios.bind(this)} className="col card">
+                <div onClick={this.setAcessorios.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Bicos e outros acessórios</p>
-                </div>
-                <div onClick={this.setAspectos.bind(this)} className="col card">
+                </div><br/>
+                <div onClick={this.setAspectos.bind(this)} className="col-xs-12 col-sm-6 card">
                     <p>Aspectos subjetivos</p>
                 </div>
             </div>

@@ -30,71 +30,85 @@ class Ilustracoes extends Component{
             return (
                 <main className="container-fluid">
                     <div className="row justify-content-md-center">
-                        <div className="col-8">
-                            <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/ilustracoes">Ilustrações</Link><hr/></h2>
+                        <div className="col-xs-12 col-md-8">
+                            <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/ilustracoes">Ilustrações</Link><hr/></h2>
 
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/tipos_mamilos" className="col card">
+                                <Link to="/informacoes/ilustracoes/tipos_mamilos" className="col-xs-12 col-sm-6 card">
                                     <p>Tipos de mamilos</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/higienizacao_mamas" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/higienizacao_mamas" className="col-xs-12 col-sm-6 card">
                                     <p>Higienização das mamas</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/posicoes_amamentar" className="col card">
+                                <Link to="/informacoes/ilustracoes/posicoes_amamentar" className="col-xs-12 col-sm-6 card">
                                     <p>Posições de amamentar</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/pega_correta" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/pega_correta" className="col-xs-12 col-sm-6 card">
                                     <p>Pega correta e incorreta</p>
                                 </Link>
+                                <br></br>
                             </div>
                             
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/formas_segurar_mamas" className="col card">
+                                <Link to="/informacoes/ilustracoes/formas_segurar_mamas" className="col-xs-12 col-sm-6 card">
                                     <p>Formas adequadas e inadequadas para segurar as mamas</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/terminar_mamada" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/terminar_mamada" className="col-xs-12 col-sm-6 card">
                                     <p>Como terminar uma mamada</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/extracao_manual" className="col card">
+                                <Link to="/informacoes/ilustracoes/extracao_manual" className="col-xs-12 col-sm-6 card">
                                     <p>Extração manual do leite materno</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/formar_armazenamento" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/formar_armazenamento" className="col-xs-12 col-sm-6 card">
                                     <p>Formas corretas de armazenar o leite materno</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/caixas_termicas" className="col card">
+                                <Link to="/informacoes/ilustracoes/caixas_termicas" className="col-xs-12 col-sm-6 card">
                                     <p>Caixas térmicas para doação e/ou solicitação de leite materno</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/artificios_nao_recomendados" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/artificios_nao_recomendados" className="col-xs-12 col-sm-6 card">
                                     <p>Artifícios não recomendados</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/equipamentos_amamentacao" className="col card">
+                                <Link to="/informacoes/ilustracoes/equipamentos_amamentacao" className="col-xs-12 col-sm-6 card">
                                     <p>Equipamentos e tecnologias de amamentação</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/desenhos_diversos" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/desenhos_diversos" className="col-xs-12 col-sm-6 card">
                                     <p>Desenhos diversos</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
-                                <Link to="/informacoes/ilustracoes/oferta_copinhos" className="col card">
+                                <Link to="/informacoes/ilustracoes/oferta_copinhos" className="col-xs-12 col-sm-6 card">
                                     <p>Oferta de leite materno em copinhos</p>
                                 </Link>
-                                <Link to="/informacoes/ilustracoes/estimulo_manual" className="col card">
+                                <br></br>
+                                <Link to="/informacoes/ilustracoes/estimulo_manual" className="col-xs-12 col-sm-6 card">
                                     <p>Estímulo manual e com bomba ordenharia em mamilo invertido</p>
                                 </Link>
+                                <br></br>
                             </div>
 
                             <div className="row container-cards">
@@ -110,8 +124,8 @@ class Ilustracoes extends Component{
             return (
                 <main className="container-fluid">
                     <div className="row justify-content-md-center">
-                        <div className="col-8">
-                            <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/ilustracoes">Ilustrações</Link><hr/></h2>
+                        <div className="col-xs-12 col-md-8">
+                            <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/ilustracoes"> &nbsp;Ilustrações</Link><hr/></h2>
                             {
                                 this.images[this.props.params.id].map(element => {
                                     return <img src={require('../../img/ilustracoes/'+element.name+'.'+element.type)} alt={element.name}/>

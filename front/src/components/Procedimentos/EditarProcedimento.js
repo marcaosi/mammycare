@@ -338,7 +338,7 @@ class EditarProcedimento extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
+                    <div className="col-xs-12 col-md-8">
                         <h4>{this.titles[this.state.step]}</h4>
                         <form onSubmit={this.nextStep}>
                             {this.forms[this.state.step]()}

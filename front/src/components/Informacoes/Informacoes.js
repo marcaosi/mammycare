@@ -6,16 +6,14 @@ class Informacoes extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
+                    <div className="col-xs-12 col-md-8">
                         <h2 className="title-page"><Link to="/informacoes">Informações</Link> <hr/></h2>
 
                         <div className="row container-cards">
                             <Link to="/informacoes/ilustracoes" className="col card">
-                                
                                 <p>Ilustrações</p>
                             </Link>
                             <Link to="/informacoes/tipos_lesoes" className="col card">
-                                
                                 <p>Tipos de Lesões</p>
                             </Link>
                         </div>

@@ -16,22 +16,22 @@ class TiposDeLesoes extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
 
                         <div className="row container-cards">
-                            <Link to="/informacoes/tipos_lesoes/vesicula" className="col card">
+                            <Link to="/informacoes/tipos_lesoes/vesicula" className="col-xs-12 col-sm-6 card">
                                 <p>Vesícula</p>
-                            </Link>
-                            <Link to="/informacoes/tipos_lesoes/escoriacao" className="col card">
+                            </Link><br/>
+                            <Link to="/informacoes/tipos_lesoes/escoriacao" className="col-xs-12 col-sm-6 card">
                                 <p>Escoriação</p>
                             </Link>
                         </div>
                         <div className="row container-cards">
-                            <Link to="/informacoes/tipos_lesoes/dilaceracao" className="col card">
+                            <Link to="/informacoes/tipos_lesoes/dilaceracao" className="col-xs-12 col-sm-6 card">
                                 <p>Dilaceração</p>
-                            </Link>
-                            <Link to="/informacoes/tipos_lesoes/erosao" className="col card">
+                            </Link><br/>
+                            <Link to="/informacoes/tipos_lesoes/erosao" className="col-xs-12 col-sm-6 card">
                                 <p>Erosão</p>
                             </Link>
                         </div>
@@ -42,10 +42,10 @@ class TiposDeLesoes extends Component{
                         </div>
 
                         <div className="row container-cards">
-                            <Link to="/informacoes/tipos_lesoes/candidiase" className="col card">
+                            <Link to="/informacoes/tipos_lesoes/candidiase" className="col-xs-12 col-sm-6 card">
                                 <p>Candidíase ou Monilíase Mamária</p>
-                            </Link>
-                            <Link to="/informacoes/tipos_lesoes/reynaud" className="col card">
+                            </Link><br/>
+                            <Link to="/informacoes/tipos_lesoes/reynaud" className="col-xs-12 col-sm-6 card">
                                 <p>Fenômeno de Reynaud no mamilo</p>
                             </Link>
                         </div>
@@ -65,8 +65,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Condutas Terapêuticas</h3>
@@ -117,8 +117,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Fenômeno de Reynaud no mamilo <small>Características</small></h3>
@@ -179,8 +179,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Candidíase ou Monilíase Mamária <small>Características</small></h3>
@@ -234,8 +234,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Fissura <small>Características</small></h3>
@@ -280,8 +280,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Erosão <small>Características</small></h3>
@@ -329,8 +329,8 @@ class TiposDeLesoes extends Component{
         return(
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Dilaceração <small>Características</small></h3>
@@ -373,8 +373,8 @@ class TiposDeLesoes extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Escoriação <small>Características</small></h3>
@@ -421,8 +421,8 @@ class TiposDeLesoes extends Component{
         return (
             <main className="container-fluid">
                 <div className="row justify-content-md-center">
-                    <div className="col-8">
-                        <h2 className="title-page"><Link to="/informacoes">Informações ></Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
+                    <div className="col-xs-12 col-md-8">
+                        <h2 className="title-page"><Link to="/informacoes">Informações > </Link><Link to="/informacoes/tipos_lesoes">Tipos de Lesões</Link><hr/></h2>
                         <div className="row">
                             <div className="col">
                                 <h3>Vesícula <small>Características</small></h3>

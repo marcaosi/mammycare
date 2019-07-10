@@ -51,13 +51,13 @@ class Procedimentos extends Component{
         return (
             <main className="container-fluid table-responsive">
                 <div className="row justify-content-md-center">
-                    <div className="col-9 text-right">
+                    <div className="col-xs-12 col-sm-9 text-right">
                         <Link to="/procedimentos/novo">Novo Procedimento</Link>
                     </div>
                 </div>
                 <div className="row justify-content-md-center">
-                    <div className="col-9">
-                        <table className="table table-striped">
+                    <div className="col-xs-12 col-sm-9 table-responsive">
+                        <table className="table table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>#</th>
