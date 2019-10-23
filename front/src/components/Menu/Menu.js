@@ -22,7 +22,7 @@ class Menu extends Component{
                             <Link to="/prevencao" className="nav-link">Prevenção</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/procedimentos" className="nav-link">Procedimentos</Link>
+                            <Link to="/procedimentos" className="nav-link">Avaliações</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/logout" className="nav-link">Sair</Link>
